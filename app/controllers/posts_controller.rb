@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create!(post_params)
+    post = Post.create(post_params)
     redirect_to post
   end
 
@@ -20,9 +20,12 @@ class PostsController < ApplicationController
   end
 
   def update
-  ends
+  end
 
   def destroy
+    post = Post.find(params[:id])
+    post.destroy!
+    redirect_to root_path
   end
 
   private
@@ -30,5 +33,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :content)
   end
-end
 end
